@@ -1,16 +1,29 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from calculator_proxy import CalculatorProxy
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def main():
+    proxy_calculator = CalculatorProxy()
+
+    # Performing allowed operations
+    print("Addition:", proxy_calculator.add(5, 3))  # Should return 8
+    print("Subtraction:", proxy_calculator.sub(5, 3))  # Should return 2
+
+    # Attempting disallowed operations
+    try:
+        proxy_calculator.mul(5, 3)
+    except NotImplementedError as e:
+        print(e)
+
+    try:
+        proxy_calculator.div(5, 3)
+    except NotImplementedError as e:
+        print(e)
+
+    try:
+        proxy_calculator.power(5, 3)
+    except NotImplementedError as e:
+        print(e)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    main()
